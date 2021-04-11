@@ -65,6 +65,11 @@ textarea{
   color: white;
   padding: 20px;
 }
+.task-text{
+  font-size: 15px;
+  word-wrap: break-word;
+  font-weight: bold;
+}
 
 .saveBtn i:hover {
   font-size: 20px;
