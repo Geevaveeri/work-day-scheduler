@@ -26,7 +26,6 @@ var loadTasks = function () {
     }
     
     var objectInfo = Object.keys(tasks);
-    var objectInfoLength = objectInfo.length;
     console.log(objectInfo);
     const textContainer = document.querySelectorAll(".event-section");
 
