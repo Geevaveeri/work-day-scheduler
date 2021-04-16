@@ -86,6 +86,7 @@ var auditTasksTime = function () {
 // task div container was clicked
 $(".event-section").on("click", function (event) {
     var textSpan = $(this).children("span");
+
     //  get current text of element
     var text = textSpan
         .text()
@@ -129,6 +130,32 @@ $(".saveBtn").on("click", function () {
     $(".textarea").replaceWith(taskSpan);
 
 });
+
+$(".event-section").focusout( function () {
+    // get current value of text area
+    var text = $("textarea").val();
+
+    // get position in calander
+    var status = $(this)
+
+        .attr("id").replace("btn-", "");
+
+    // update task in array and re-save
+    tasks[status] = text;
+
+    saveTasks();
+    // recreate span
+    var taskSpan = $("<span>")
+        .addClass("task-text")
+        .addClass(".event-section")
+        .attr("taskId", status)
+        .text(text);
+    $("task-text").innerHTML = "<span>" + text + "</span>";
+    // replace textarea with new content
+    $(".textarea").replaceWith(taskSpan);
+
+});
+
 timeCheck();
 loadTasks();
 auditTasksTime();
