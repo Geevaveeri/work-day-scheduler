@@ -18,25 +18,7 @@ var saveTasks = function () {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
-// var containerCycle = function (task) {
-//    $(".event-section").each(function () {
-//         containerId = $(".event-section");
-//         for (var i = 0; i < containerId.length; i++){
-
-//         }
-// //         if (task === containerId) {
-
-// //             container.append(task[i].value);
-// //             console.log(task.attr("taskId"));
-// //             debugger;
-// //         }
-//         console.log($(containerId));
-
-// //         console.log("didn't work")
-//     })
-
-// };
-
+// function that replaces tasks in correct time slot after refresh
 var loadTasks = function () {
     tasks = JSON.parse(localStorage.getItem("tasks"));
     if (!tasks) {
@@ -47,11 +29,10 @@ var loadTasks = function () {
     var objectInfoLength = objectInfo.length;
     console.log(objectInfo);
     const textContainer = document.querySelectorAll(".event-section");
-    // textContainer.forEach(function () {
 
     for(var i = 0; i < textContainer.length; i++){
         
-        id = false;
+        
         for(const [key, value] of Object.entries(tasks)){
             if (key === textContainer[i].attributes[1].value){
                 text = value;
@@ -70,90 +51,10 @@ var loadTasks = function () {
         }
       
     }
-    
-//         var k = 0;
-//  var t=9;
-//    var divLoop = function(){
-//         for (var i = 0; i < 9; i++) {
-//         var text = tasks[t];
-//         if (textContainer[i].attributes[1].value === objectInfo[k]) {
-//             var spanText = $(textContainer).children("span")
-//             var taskSpan = $("<span>")
-//             .addClass("task-text")
-//             .addClass(".event-section")
-//             .attr("taskId", status)
-//             .text(text);
-//         $("task-text").innerHTML = "<span>" + text + "</span>";
-//         // replace textarea with new content
-//         $(spanText[i]).replaceWith(taskSpan);
-            
-            
 
-
-
-//             console.log(typeof textContainer);
-//             console.log(typeof objectInfo);
-           
-//         } else{
-//             continue;
-//         }
-       
-        
-
-//     }
-// }
-
-// t++;
-// k++;
-// debugger;
-// divLoop()
-
-    // })
-
-
-
-
-    // for (const [key, value] of Object.entries(objectInfo)) {
-    //     var taskEl = $("<span>").addClass("test-text").val(value).attr("taskId", key);
-
-
-
-    //     if (key === textContainer[i].id) {
-
-    //     //     container.append(taskEl[i].value);
-    //     //     console.log(taskEl.attr("taskId"));
-    //     console.log("it worked")
-
-    //     }else{
-
-    //     console.log(taskEl.attr("taskId"));
-    //     console.log("it didn't work");
-    //     }
-
-
-    // }
-
-    // })
-    // createTasks(task[i], task.);
-    // if (!tasks) {
-    //     tasks = {};
-    // }
-
-    // $.each(tasks, function (list, arr) {
-    //     arr.forEach(function (task) {
-    //         createTasks(task.text, task.time);
-    //     })
-    // })
 
 };
 
-// var createTasks = function (taskText, taskTime) {
-//     var taskEl = $("<span>").addClass("tast-text").text(value).attr("taskId", key);
-
-//     console.log(taskEl.attr("taskId"));
-// };
-
-// function to check tasks against current time
 var auditTasksTime = function () {
 
     $(".event-section").each(function (i) {
@@ -195,7 +96,6 @@ $(".event-section").on("click", function (event) {
     // replace span element with a new textarea
     var textInput = $("<textarea>").addClass("textarea").attr("cols", "75").attr("rows", "1").val(text);
 
-    // $(targetEl).replaceWith(textInput);
 
     $(textSpan).replaceWith(textInput);
 
@@ -204,8 +104,6 @@ $(".event-section").on("click", function (event) {
 
 
 });
-
-
 
 // save button was clicked
 $(".saveBtn").on("click", function () {
@@ -221,7 +119,7 @@ $(".saveBtn").on("click", function () {
     tasks[status] = text;
 
     saveTasks();
-    // recreate p
+    // recreate span
     var taskSpan = $("<span>")
         .addClass("task-text")
         .addClass(".event-section")
@@ -233,6 +131,5 @@ $(".saveBtn").on("click", function () {
 
 });
 timeCheck();
-// containerCycle();
 loadTasks();
 auditTasksTime();
